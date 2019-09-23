@@ -1,1 +1,0 @@
-# start-stop-ec2-lambda
