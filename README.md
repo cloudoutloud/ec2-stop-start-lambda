@@ -1,3 +1,3 @@
 # ec2-stop-start-lambda
 
-![alt text](Lambda.pdf)
+![alt text](Lambda.png)
