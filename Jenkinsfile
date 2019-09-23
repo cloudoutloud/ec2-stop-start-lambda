@@ -14,6 +14,17 @@ pipeline {
     environment {
     PATH = "${env.WORKSPACE}/bin:${env.PATH}"
     }
+
+    stage ('zip lambda functions'){
+            steps{
+                dir('function-stop/'){
+                    sh "zip function.zip function.py"
+                }
+                dir('function-start/'){
+                    sh "zip function.zip function.py"
+                }
+            }
+        }
     
     // Steps to deploy terraform infra
     stages {
@@ -62,14 +73,6 @@ pipeline {
         }
 
         //Steps to deploy stop lambda function 1
-        stage ('LambdaStopBuild'){
-            steps{
-                dir('function-stop/'){
-                    sh "zip function.zip function.py"
-                }
-            }
-        }
-
         stage ('LambdaStopDeploy'){
             steps{
                 script{
@@ -84,14 +87,6 @@ pipeline {
         }
 
         //Steps to deploy start lambda function 2
-        stage ('LambdaStartBuild'){
-            steps{
-                dir('function-start/'){
-                    sh "zip function.zip function.py"
-                }
-            }
-        }
-
         stage ('LambdaStartDeploy'){
             steps{
                 script{
