@@ -15,25 +15,27 @@ pipeline {
     PATH = "${env.WORKSPACE}/bin:${env.PATH}"
     }
 
-    // Zip lambda functions to prepare for deployment
-    stage ('zip stop lambda function'){
+    
+    stages {
+        
+        // Zip lambda functions to prepare for deployment
+        stage ('zip stop lambda function'){
             steps{
                 dir('function-stop/'){
                     sh "zip function.zip function.py"
                 }
             }
-    }
+        }
 
-    stage ('zip start lambda function'){ 
+        stage ('zip start lambda function'){ 
             steps{   
                 dir('function-start/'){
                     sh "zip function.zip function.py"
                 }
             }
-    }
-    
-    // Steps to deploy terraform infra
-    stages {
+        }
+        
+        // Steps to deploy terraform infra
         stage ('Initialise'){
             steps {
                 dir('terraform/'){
