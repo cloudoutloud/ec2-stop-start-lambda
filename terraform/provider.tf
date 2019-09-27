@@ -3,5 +3,5 @@
 provider "aws" {
     region = "${var.aws_region}"
     shared_credentials_file = "$HOME/.aws/credentials"
-    profile = "contino-personal-sandbox"
+    profile = "sandbox"
 }
